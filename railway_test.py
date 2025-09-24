@@ -35,15 +35,24 @@ class TestHandler(BaseHTTPRequestHandler):
 
 
 if __name__ == "__main__":
-    port = int(os.getenv("PORT", 8000))
+    # Railway might use different PORT env var
+    port = int(os.getenv("PORT", os.getenv("RAILWAY_PORT", "8080")))
 
     print("="*50)
-    print("🧪 RAILWAY TEST SERVER")
+    print("🧪 RAILWAY TEST SERVER - DEBUG MODE")
     print("="*50)
-    print(f"Port: {port}")
-    print(f"URL: http://0.0.0.0:{port}")
+    print(f"PORT env var: {os.getenv('PORT', 'NOT SET')}")
+    print(f"RAILWAY_PORT env var: {os.getenv('RAILWAY_PORT', 'NOT SET')}")
+    print(f"Using port: {port}")
+    print(f"Binding to: 0.0.0.0:{port}")
     print("="*50)
 
-    server = HTTPServer(('0.0.0.0', port), TestHandler)
-    print(f"✅ Server started successfully on port {port}")
-    server.serve_forever()
+    try:
+        server = HTTPServer(('0.0.0.0', port), TestHandler)
+        print(f"✅ Server started successfully on port {port}")
+        print(f"🌐 Railway should route traffic from 8080 to {port}")
+        server.serve_forever()
+    except Exception as e:
+        print(f"❌ Server failed to start: {e}")
+        import traceback
+        traceback.print_exc()

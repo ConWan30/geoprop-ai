@@ -3,6 +3,6 @@ builder = "NIXPACKS"
 buildCommand = "pip install -r requirements.txt"
 
 [deploy]
-startCommand = "python railway_test.py"
+startCommand = "python simple_server.py"
 restartPolicyType = "ON_FAILURE"
 restartPolicyMaxRetries = 10
