@@ -1,16 +1,3 @@
-# GeoProp AI - Root requirements for Railway detection
-# Main dependencies are in backend/requirements.txt
-
-# FastAPI and ASGI
+# GeoProp AI - Minimal requirements for Railway detection
 fastapi==0.104.1
 uvicorn[standard]==0.24.0
-
-# HTTP clients
-httpx==0.25.2
-
-# Utilities
-python-dotenv==1.0.0
-pydantic==2.5.2
-
-# Logging
-structlog==23.2.0
