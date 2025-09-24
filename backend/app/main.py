@@ -51,10 +51,20 @@ async def global_exception_handler(request: Request, exc: Exception):
 async def root():
     """Root endpoint for Railway health checks"""
     return {
+        "message": "🚀 GeoProp AI is LIVE!",
         "service": "GeoProp AI",
         "status": "healthy",
+        "version": "1.0.0",
         "environment": os.getenv("RAILWAY_ENVIRONMENT", "development"),
-        "railway": True
+        "port": os.getenv("PORT", "8000"),
+        "railway": True,
+        "endpoints": {
+            "health": "/health",
+            "api_docs": "/docs",
+            "active_bets": "/api/v1/bets/active",
+            "ai_predict": "/api/v1/ai/predict",
+            "blockchain": "/api/v1/blockchain/status"
+        }
     }
 
 @app.get("/health")
