@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-iotex-secondary text-white font-mono;
+    background: linear-gradient(135deg, #1A1A2E 0%, #16213E 50%, #0F3460 100%);
+    min-height: 100vh;
+  }
+}
+
+@layer components {
+  .cyber-border {
+    @apply border border-iotex-primary/30 rounded-lg;
+    box-shadow:
+      0 0 10px rgba(0, 212, 170, 0.3),
+      inset 0 0 10px rgba(0, 212, 170, 0.1);
+  }
+
+  .cyber-button {
+    @apply px-6 py-3 bg-gradient-to-r from-iotex-primary to-cyber-neon text-black font-bold rounded-lg;
+    @apply hover:from-cyber-neon hover:to-iotex-primary transition-all duration-300;
+    @apply shadow-lg hover:shadow-iotex-primary/50;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .neural-grid {
+    background-image:
+      linear-gradient(rgba(0, 212, 170, 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 212, 170, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+
+  .holographic {
+    background: linear-gradient(45deg,
+      rgba(0, 255, 255, 0.1) 0%,
+      rgba(255, 16, 240, 0.1) 25%,
+      rgba(57, 255, 20, 0.1) 50%,
+      rgba(138, 43, 226, 0.1) 75%,
+      rgba(0, 255, 255, 0.1) 100%);
+    animation: holographic-shift 3s linear infinite;
+  }
+
+  @keyframes holographic-shift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+}
