@@ -1,8 +1,6 @@
 [build]
-builder = "NIXPACKS"
-buildCommand = "echo 'Minimal build - no dependencies'"
+builder = "DOCKERFILE"
 
 [deploy]
-startCommand = "python minimal_debug.py"
 restartPolicyType = "ON_FAILURE"
 restartPolicyMaxRetries = 10
