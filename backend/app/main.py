@@ -197,5 +197,13 @@ async def verify_location(location_data: dict):
 
 if __name__ == "__main__":
     import uvicorn
+
+    # Debug Railway environment
+    print("=== GeoProp AI Startup ===")
+    print(f"PORT env var: {os.getenv('PORT', 'NOT SET')}")
+    print(f"Railway environment: {os.getenv('RAILWAY_ENVIRONMENT', 'NOT SET')}")
+
     port = int(os.getenv("PORT", 8000))
+    print(f"Starting uvicorn on port: {port}")
+
     uvicorn.run(app, host="0.0.0.0", port=port)
