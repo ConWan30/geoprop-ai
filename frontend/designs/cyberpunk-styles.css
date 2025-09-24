@@ -1,0 +1,937 @@
+/* GeoProp AI - Cyberpunk Futuristic UI Styles */
+/* Neural Network + Holographic + IoTeX Theme */
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* Cyberpunk Color Palette */
+  --neon-blue: #00ffff;
+  --neon-pink: #ff00ff;
+  --neon-green: #39ff14;
+  --neon-yellow: #ffff00;
+  --neural-purple: #8a2be2;
+  --quantum-red: #ff073a;
+
+  /* IoTeX Brand Colors */
+  --iotex-primary: #44d7b6;
+  --iotex-secondary: #1e40af;
+  --iotex-accent: #0ea5e9;
+
+  /* Dark Theme */
+  --bg-primary: #0a0a0a;
+  --bg-secondary: #1a1a1a;
+  --bg-tertiary: #2a2a2a;
+  --text-primary: #ffffff;
+  --text-secondary: #b3b3b3;
+
+  /* Holographic Effects */
+  --holo-gradient: linear-gradient(45deg, var(--neon-blue), var(--neon-pink), var(--neon-green));
+  --neural-gradient: linear-gradient(135deg, var(--neural-purple), var(--iotex-primary));
+}
+
+/* Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Rajdhani', sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  overflow-x: hidden;
+}
+
+.geoprop-quantum-interface {
+  min-height: 100vh;
+  position: relative;
+  background: radial-gradient(ellipse at center, #1a1a2e 0%, #0a0a0a 100%);
+}
+
+/* Quantum Background Effects */
+.quantum-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.neural-grid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image:
+    linear-gradient(rgba(68, 215, 182, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(68, 215, 182, 0.1) 1px, transparent 1px);
+  background-size: 50px 50px;
+  animation: neural-pulse 4s ease-in-out infinite;
+}
+
+@keyframes neural-pulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.8; }
+}
+
+.particle-field {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(2px 2px at 20px 30px, var(--neon-blue), transparent),
+              radial-gradient(2px 2px at 40px 70px, var(--neon-pink), transparent),
+              radial-gradient(1px 1px at 90px 40px, var(--neon-green), transparent),
+              radial-gradient(1px 1px at 130px 80px, var(--neon-yellow), transparent);
+  animation: particle-drift 20s linear infinite;
+}
+
+@keyframes particle-drift {
+  0% { transform: translateY(0px); }
+  100% { transform: translateY(-100vh); }
+}
+
+/* Neural Header */
+.neural-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  background: rgba(26, 26, 46, 0.8);
+  backdrop-filter: blur(20px);
+  border-bottom: 2px solid var(--iotex-primary);
+  box-shadow: 0 0 30px rgba(68, 215, 182, 0.3);
+}
+
+.holo-logo {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-core {
+  font-family: 'Orbitron', monospace;
+  font-size: 2.5rem;
+  font-weight: 900;
+  background: var(--holo-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  position: relative;
+}
+
+.logo-core::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--holo-gradient);
+  filter: blur(10px);
+  opacity: 0.3;
+  z-index: -1;
+}
+
+.logo-neural-ring {
+  width: 60px;
+  height: 60px;
+  border: 2px solid var(--iotex-primary);
+  border-radius: 50%;
+  position: relative;
+  animation: neural-rotate 10s linear infinite;
+}
+
+.logo-neural-ring::before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  border: 1px solid var(--neon-blue);
+  border-radius: 50%;
+  animation: neural-rotate 15s linear infinite reverse;
+}
+
+@keyframes neural-rotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.logo-data-stream {
+  font-family: 'Orbitron', monospace;
+  font-size: 1.2rem;
+  color: var(--neon-green);
+  text-shadow: 0 0 10px var(--neon-green);
+}
+
+/* Trust Score Hologram */
+.trust-score-holo {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.circular-progress {
+  position: relative;
+  width: 120px;
+  height: 120px;
+}
+
+.circular-progress svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.progress-bg {
+  fill: none;
+  stroke: rgba(68, 215, 182, 0.2);
+  stroke-width: 8;
+}
+
+.progress-fill {
+  fill: none;
+  stroke: var(--iotex-primary);
+  stroke-width: 8;
+  stroke-linecap: round;
+  filter: drop-shadow(0 0 10px var(--iotex-primary));
+  animation: progress-glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes progress-glow {
+  0% { filter: drop-shadow(0 0 10px var(--iotex-primary)); }
+  100% { filter: drop-shadow(0 0 20px var(--iotex-primary)); }
+}
+
+.score-display {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.score-number {
+  font-family: 'Orbitron', monospace;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--iotex-primary);
+  text-shadow: 0 0 15px var(--iotex-primary);
+}
+
+.score-label {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  display: block;
+}
+
+.trust-particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 20%, var(--neon-blue) 2px, transparent 2px),
+              radial-gradient(circle at 70% 80%, var(--neon-pink) 1px, transparent 1px);
+  animation: particle-orbit 8s linear infinite;
+}
+
+@keyframes particle-orbit {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Neural Status Indicator */
+.neural-status {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.status-indicator {
+  position: relative;
+  width: 20px;
+  height: 20px;
+}
+
+.pulse-ring {
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  border: 2px solid var(--neon-green);
+  border-radius: 50%;
+  animation: pulse-ring 2s linear infinite;
+}
+
+@keyframes pulse-ring {
+  0% { transform: scale(0.8); opacity: 1; }
+  100% { transform: scale(1.4); opacity: 0; }
+}
+
+.status-dot {
+  width: 100%;
+  height: 100%;
+  background: var(--neon-green);
+  border-radius: 50%;
+  box-shadow: 0 0 15px var(--neon-green);
+}
+
+.status-text {
+  font-family: 'Orbitron', monospace;
+  font-size: 0.9rem;
+  color: var(--neon-green);
+  text-shadow: 0 0 5px var(--neon-green);
+}
+
+/* Quantum Tabs */
+.quantum-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 30px;
+  background: rgba(42, 42, 42, 0.5);
+  backdrop-filter: blur(15px);
+}
+
+.quantum-tab {
+  position: relative;
+  padding: 15px 25px;
+  background: transparent;
+  border: 2px solid var(--iotex-secondary);
+  border-radius: 15px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.quantum-tab:hover {
+  border-color: var(--iotex-primary);
+  color: var(--text-primary);
+  transform: translateY(-2px);
+}
+
+.quantum-tab.active {
+  border-color: var(--iotex-primary);
+  color: var(--iotex-primary);
+  box-shadow: 0 0 20px rgba(68, 215, 182, 0.4);
+}
+
+.tab-icon {
+  font-size: 1.5rem;
+}
+
+.tab-label {
+  font-family: 'Orbitron', monospace;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.tab-energy-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 0%;
+  background: var(--iotex-primary);
+  transition: width 0.3s ease;
+}
+
+.quantum-tab.active .tab-energy-bar {
+  width: 100%;
+}
+
+/* Neural Player Cards */
+.neural-betting-interface {
+  padding: 40px;
+}
+
+.holographic-game-feed {
+  margin-bottom: 40px;
+}
+
+.feed-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.feed-header h3 {
+  font-family: 'Orbitron', monospace;
+  font-size: 1.5rem;
+  color: var(--iotex-primary);
+  text-shadow: 0 0 10px var(--iotex-primary);
+}
+
+.sync-indicator {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--neon-green);
+}
+
+.sync-pulse {
+  width: 12px;
+  height: 12px;
+  background: var(--neon-green);
+  border-radius: 50%;
+  animation: sync-pulse 1s ease-in-out infinite;
+}
+
+@keyframes sync-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.8); }
+}
+
+.player-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 30px;
+}
+
+.neural-player-card {
+  position: relative;
+  padding: 25px;
+  background: linear-gradient(135deg, rgba(26, 26, 46, 0.9), rgba(42, 42, 42, 0.9));
+  border: 1px solid var(--iotex-primary);
+  border-radius: 20px;
+  backdrop-filter: blur(15px);
+  box-shadow: 0 10px 40px rgba(68, 215, 182, 0.2);
+  overflow: hidden;
+}
+
+.neural-player-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(68, 215, 182, 0.1), transparent);
+  animation: card-scan 3s linear infinite;
+}
+
+@keyframes card-scan {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+.player-holo-avatar {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 20px;
+}
+
+.avatar-core {
+  width: 100%;
+  height: 100%;
+  background: var(--neural-gradient);
+  border-radius: 50%;
+  border: 3px solid var(--iotex-primary);
+  box-shadow: 0 0 25px rgba(68, 215, 182, 0.6);
+}
+
+.avatar-energy-field {
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  border: 1px solid var(--neon-blue);
+  border-radius: 50%;
+  animation: energy-field-rotation 8s linear infinite;
+}
+
+@keyframes energy-field-rotation {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.neural-connections {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 120%;
+  height: 120%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle at center, transparent 40%, var(--neon-pink) 41%, var(--neon-pink) 42%, transparent 43%);
+  opacity: 0.3;
+  animation: neural-pulse 3s ease-in-out infinite;
+}
+
+.stats-matrix {
+  text-align: center;
+}
+
+.player-name-holo {
+  font-family: 'Orbitron', monospace;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.ai-prediction {
+  color: var(--iotex-primary);
+  margin-bottom: 20px;
+  text-shadow: 0 0 5px var(--iotex-primary);
+}
+
+/* Neural Progress Bar */
+.neural-progress {
+  margin: 20px 0;
+}
+
+.progress-label {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin-bottom: 5px;
+}
+
+.progress-holo-bar {
+  position: relative;
+  height: 8px;
+  background: rgba(68, 215, 182, 0.2);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-fill-neural {
+  height: 100%;
+  background: var(--iotex-primary);
+  box-shadow: 0 0 10px var(--iotex-primary);
+  transition: width 0.5s ease;
+  position: relative;
+}
+
+.progress-fill-neural::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 10px;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, var(--neon-blue));
+  animation: progress-scanner 2s linear infinite;
+}
+
+@keyframes progress-scanner {
+  0% { opacity: 0; transform: translateX(-10px); }
+  50% { opacity: 1; }
+  100% { opacity: 0; transform: translateX(10px); }
+}
+
+.progress-stats {
+  margin-top: 5px;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+/* Confidence Hologram */
+.confidence-holo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin: 20px 0;
+}
+
+.confidence-ring {
+  position: relative;
+  width: 60px;
+  height: 60px;
+}
+
+.confidence-ring svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.conf-bg {
+  fill: none;
+  stroke: rgba(68, 215, 182, 0.2);
+  stroke-width: 4;
+}
+
+.conf-fill {
+  fill: none;
+  stroke: var(--neon-green);
+  stroke-width: 4;
+  stroke-linecap: round;
+  filter: drop-shadow(0 0 8px var(--neon-green));
+}
+
+.conf-percentage {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Orbitron', monospace;
+  font-size: 0.9rem;
+  color: var(--neon-green);
+}
+
+.ai-score-badge {
+  padding: 8px 15px;
+  background: linear-gradient(45deg, var(--neural-purple), var(--neon-pink));
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+}
+
+/* Neural Bet Button */
+.neural-bet-button {
+  position: relative;
+  width: 100%;
+  padding: 15px;
+  background: linear-gradient(135deg, var(--iotex-primary), var(--iotex-accent));
+  border: none;
+  border-radius: 15px;
+  color: var(--text-primary);
+  font-family: 'Orbitron', monospace;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.neural-bet-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(68, 215, 182, 0.4);
+}
+
+.button-energy {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  animation: button-energy-flow 2s linear infinite;
+}
+
+@keyframes button-energy-flow {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+.button-particles {
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  width: 20px;
+  height: 20px;
+  background: radial-gradient(circle, var(--neon-yellow) 1px, transparent 1px);
+  background-size: 4px 4px;
+  animation: button-particles 1.5s linear infinite;
+}
+
+@keyframes button-particles {
+  0% { opacity: 0; transform: scale(0) rotate(0deg); }
+  50% { opacity: 1; }
+  100% { opacity: 0; transform: scale(1.5) rotate(180deg); }
+}
+
+/* Quantum Bet Constructor */
+.quantum-bet-constructor {
+  background: linear-gradient(135deg, rgba(26, 26, 46, 0.8), rgba(42, 42, 42, 0.8));
+  border: 1px solid var(--iotex-secondary);
+  border-radius: 25px;
+  padding: 30px;
+  backdrop-filter: blur(20px);
+}
+
+.constructor-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.constructor-header h3 {
+  font-family: 'Orbitron', monospace;
+  color: var(--neon-pink);
+  text-shadow: 0 0 10px var(--neon-pink);
+}
+
+.ai-assistance {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--neon-blue);
+}
+
+.ai-pulse {
+  width: 10px;
+  height: 10px;
+  background: var(--neon-blue);
+  border-radius: 50%;
+  animation: ai-pulse 1s ease-in-out infinite;
+}
+
+@keyframes ai-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.3; transform: scale(0.7); }
+}
+
+/* Holographic Input Fields */
+.bet-config-holo {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 25px;
+}
+
+.config-section {
+  position: relative;
+}
+
+.holo-label {
+  display: block;
+  margin-bottom: 10px;
+  font-family: 'Orbitron', monospace;
+  font-size: 0.9rem;
+  color: var(--iotex-primary);
+  text-shadow: 0 0 5px var(--iotex-primary);
+}
+
+.metric-selector {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.metric-holo-button {
+  position: relative;
+  padding: 12px;
+  background: rgba(68, 215, 182, 0.1);
+  border: 1px solid var(--iotex-primary);
+  border-radius: 10px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.metric-holo-button:hover {
+  background: rgba(68, 215, 182, 0.2);
+  transform: scale(1.05);
+}
+
+.metric-energy {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, transparent 30%, var(--neon-blue) 50%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.metric-holo-button:hover .metric-energy {
+  opacity: 0.3;
+  animation: metric-energy-sweep 0.6s ease;
+}
+
+@keyframes metric-energy-sweep {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.amount-holo-input {
+  position: relative;
+}
+
+.amount-holo-input input {
+  width: 100%;
+  padding: 15px;
+  background: rgba(26, 26, 46, 0.8);
+  border: 2px solid var(--iotex-secondary);
+  border-radius: 12px;
+  color: var(--text-primary);
+  font-family: 'Orbitron', monospace;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+}
+
+.amount-holo-input input:focus {
+  outline: none;
+  border-color: var(--iotex-primary);
+  box-shadow: 0 0 20px rgba(68, 215, 182, 0.3);
+}
+
+.input-energy-field {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 12px;
+  background: linear-gradient(45deg, var(--neon-blue), var(--neon-pink));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.amount-holo-input input:focus + .input-energy-field {
+  opacity: 0.1;
+  animation: input-energy-pulse 2s ease-in-out infinite;
+}
+
+@keyframes input-energy-pulse {
+  0%, 100% { opacity: 0.1; }
+  50% { opacity: 0.2; }
+}
+
+/* AI Recommendation Panel */
+.ai-recommendation-panel {
+  position: relative;
+  padding: 20px;
+  background: linear-gradient(135deg, rgba(138, 43, 226, 0.2), rgba(255, 0, 255, 0.2));
+  border: 1px solid var(--neural-purple);
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.recommendation-core {
+  display: flex;
+  gap: 15px;
+  align-items: flex-start;
+  position: relative;
+  z-index: 2;
+}
+
+.rec-icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.rec-text {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--text-primary);
+}
+
+.neural-pathways {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background:
+    linear-gradient(45deg, transparent 48%, var(--neural-purple) 49%, var(--neural-purple) 51%, transparent 52%),
+    linear-gradient(-45deg, transparent 48%, var(--neon-pink) 49%, var(--neon-pink) 51%, transparent 52%);
+  background-size: 20px 20px;
+  opacity: 0.1;
+  animation: neural-pathways-flow 4s linear infinite;
+}
+
+@keyframes neural-pathways-flow {
+  0% { background-position: 0 0, 0 0; }
+  100% { background-position: 20px 20px, -20px 20px; }
+}
+
+/* Floating Action Buttons */
+.floating-actions {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  z-index: 1000;
+}
+
+.fab {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: none;
+  background: var(--neural-gradient);
+  color: var(--text-primary);
+  font-size: 1.5rem;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 5px 25px rgba(68, 215, 182, 0.4);
+}
+
+.fab-energy {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle at center, var(--neon-blue) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.fab:hover .fab-energy {
+  opacity: 0.6;
+  animation: fab-energy-burst 0.8s ease;
+}
+
+@keyframes fab-energy-burst {
+  0% { transform: scale(0); opacity: 0.8; }
+  100% { transform: scale(1.5); opacity: 0; }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .neural-header {
+    padding: 15px 20px;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .quantum-tabs {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .player-cards-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .metric-selector {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .floating-actions {
+    bottom: 20px;
+    right: 20px;
+  }
+}
+
+/* Animation Performance Optimization */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
