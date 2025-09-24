@@ -1,0 +1,38 @@
+{ 
+  "name": "geoprop-ai", 
+  "version": "1.0.0", 
+  "description": "GeoProp AI - Geo-localized Esports Prop Betting Platform", 
+  "main": "index.js", 
+  "scripts": { 
+    "dev": "concurrently \"npm run backend:dev\" \"npm run frontend:dev\"", 
+    "backend:dev": "cd backend ^&^& uvicorn api.main:app --reload --host 0.0.0.0 --port 8000", 
+    "frontend:dev": "cd frontend ^&^& npm run dev", 
+    "test": "npm run backend:test ^&^& npm run frontend:test", 
+    "backend:test": "cd backend ^&^& python -m pytest tests/ -v", 
+    "frontend:test": "cd frontend ^&^& npm test", 
+    "build": "npm run backend:build ^&^& npm run frontend:build", 
+    "backend:build": "echo \"Backend build not required\"", 
+    "frontend:build": "cd frontend ^&^& npm run build", 
+    "deploy:terraform": "cd infrastructure/terraform ^&^& terraform apply", 
+    "deploy:docker": "docker-compose -f infrastructure/docker/docker-compose.yml up -d", 
+    "contracts:compile": "cd contracts ^&^& npx hardhat compile", 
+    "contracts:deploy": "cd contracts ^&^& npx hardhat run scripts/deploy.js --network iotex" 
+  }, 
+  "devDependencies": { 
+    "concurrently": "^8.2.2" 
+  }, 
+  "keywords": [ 
+    "iotex", 
+    "ai", 
+    "esports", 
+    "betting", 
+    "depin", 
+    "ioid" 
+  ], 
+  "author": "GeoProp AI Team", 
+  "license": "MIT", 
+  "repository": { 
+    "type": "git", 
+    "url": "https://github.com/your-username/geoprop-ai.git" 
+  } 
+} 

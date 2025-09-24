@@ -1,0 +1,31 @@
+{
+  "name": "@geoprop/ai-sdk",
+  "version": "1.0.0",
+  "description": "GeoProp AI SDK for geo-localized esports prop betting",
+  "main": "sdk/index.js",
+  "type": "module",
+  "scripts": {
+    "test": "jest",
+    "build": "webpack --mode production",
+    "dev": "webpack serve --mode development"
+  },
+  "dependencies": {
+    "web3": "^4.2.2",
+    "axios": "^1.6.2"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^4.15.1"
+  },
+  "keywords": [
+    "iotex",
+    "ai",
+    "esports",
+    "betting",
+    "depin"
+  ],
+  "author": "GeoProp AI",
+  "license": "MIT"
+}

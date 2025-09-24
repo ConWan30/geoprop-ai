@@ -1,0 +1,19 @@
+version: '3.8' 
+ 
+services: 
+  geoprop-api: 
+    build: 
+      context: ../.. 
+      dockerfile: infrastructure/docker/Dockerfile 
+    ports: 
+      - "8000:8000" 
+    environment: 
+      - IOTEX_RPC_URL=https://babel-api.mainnet.iotex.io 
+      - REDIS_URL=redis://redis:6379 
+    depends_on: 
+      - redis 
+ 
+  redis: 
+    image: redis:7-alpine 
+    ports: 
+      - "6379:6379" 

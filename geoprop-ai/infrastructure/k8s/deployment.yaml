@@ -1,0 +1,24 @@
+apiVersion: apps/v1 
+kind: Deployment 
+metadata: 
+  name: geoprop-api 
+  labels: 
+    app: geoprop-api 
+spec: 
+  replicas: 3 
+  selector: 
+    matchLabels: 
+      app: geoprop-api 
+  template: 
+    metadata: 
+      labels: 
+        app: geoprop-api 
+    spec: 
+      containers: 
+      - name: api 
+        image: geoprop/api:latest 
+        ports: 
+        - containerPort: 8000 
+        env: 
+        - name: IOTEX_RPC_URL 
+          value: "https://babel-api.mainnet.iotex.io" 
