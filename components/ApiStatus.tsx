@@ -28,7 +28,7 @@ export default function ApiStatus() {
     const startTime = Date.now()
 
     try {
-      // Try to reach the Railway backend
+      // Try to reach the backend API service
       const response = await axios.get('/api/health', { timeout: 5000 })
       const responseTime = Date.now() - startTime
 
@@ -39,21 +39,21 @@ export default function ApiStatus() {
         blockchain: response.data.blockchain_status === 'connected'
       })
     } catch (error) {
-      // If API fails, try direct Railway URL
+      // If API fails, try direct backend URL
       try {
-        const response = await axios.get('https://geoprop-ai.up.railway.app/health', { timeout: 5000 })
+        const response = await axios.get('https://geoprop-ai-backend.up.railway.app/health', { timeout: 5000 })
         const responseTime = Date.now() - startTime
 
         setApiStatus({
           status: 'online',
-          message: 'Railway Backend Online',
+          message: 'Backend API Online',
           responseTime,
           blockchain: response.data?.blockchain_status === 'connected'
         })
-      } catch (railwayError) {
+      } catch (backendError) {
         setApiStatus({
           status: 'offline',
-          message: 'Backend Offline - Using Demo Mode',
+          message: 'Backend Offline - Demo Mode',
           responseTime: undefined,
           blockchain: false
         })

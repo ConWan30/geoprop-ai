@@ -2,127 +2,141 @@
 
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { Zap, Target, Brain, Globe, Shield, TrendingUp } from 'lucide-react'
+import { Trophy, DollarSign, TrendingUp, Clock, Users, Gamepad2 } from 'lucide-react'
 import BettingInterface from '@/components/BettingInterface'
+import BettingSlip from '@/components/BettingSlip'
+import LiveMatches from '@/components/LiveMatches'
 import ApiStatus from '@/components/ApiStatus'
 
 export default function Home() {
-  const [trustScore, setTrustScore] = useState(87)
-  const [activeTab, setActiveTab] = useState('neural-bets')
+  const [activeTab, setActiveTab] = useState('live-betting')
+  const [bettingSlip, setBettingSlip] = useState([])
+  const [balance, setBalance] = useState(2847.50)
+
+  const addToBettingSlip = (bet) => {
+    setBettingSlip(prev => {
+      const existing = prev.find(b => b.id === bet.id)
+      if (existing) return prev
+      return [...prev, { ...bet, stake: 10 }]
+    })
+  }
+
+  const removeFromBettingSlip = (betId) => {
+    setBettingSlip(prev => prev.filter(b => b.id !== betId))
+  }
+
+  const updateStake = (betId, stake) => {
+    setBettingSlip(prev => prev.map(b =>
+      b.id === betId ? { ...b, stake: parseFloat(stake) || 0 } : b
+    ))
+  }
 
   return (
-    <main className="min-h-screen p-4">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
       {/* Header */}
-      <motion.header
-        initial={{ y: -50, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        className="text-center mb-8"
-      >
-        <h1 className="text-6xl font-bold mb-4 bg-gradient-to-r from-iotex-primary via-cyber-neon to-cyber-pink bg-clip-text text-transparent animate-glow">
-          GeoProp AI
-        </h1>
-        <p className="text-xl text-gray-300 mb-6">
-          Decentralized Esports Betting • IoTeX Blockchain • AI-Powered
-        </p>
-
-        {/* Trust Score */}
-        <motion.div
-          className="inline-block cyber-border p-4 holographic"
-          whileHover={{ scale: 1.05 }}
-        >
-          <div className="flex items-center gap-3">
-            <Shield className="text-iotex-primary w-6 h-6" />
-            <span className="text-lg">Trust Score: </span>
-            <span className="text-2xl font-bold text-iotex-primary">{trustScore}%</span>
-            <div className="w-24 h-2 bg-gray-700 rounded-full overflow-hidden ml-2">
+      <header className="border-b border-gray-800 bg-black/50 backdrop-blur-sm">
+        <div className="max-w-7xl mx-auto px-4 py-4">
+          <div className="flex justify-between items-center">
+            <div className="flex items-center gap-4">
               <motion.div
-                className="h-full bg-gradient-to-r from-iotex-primary to-cyber-green"
-                initial={{ width: 0 }}
-                animate={{ width: `${trustScore}%` }}
-                transition={{ duration: 2 }}
-              />
+                className="text-2xl font-bold text-emerald-400"
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+              >
+                <Trophy className="w-8 h-8 inline mr-2" />
+                GeoProp AI
+              </motion.div>
+              <div className="text-sm text-gray-400">
+                Live Esports Betting Platform
+              </div>
+            </div>
+
+            <div className="flex items-center gap-6">
+              <ApiStatus />
+              <div className="flex items-center gap-2 bg-emerald-500/20 px-4 py-2 rounded-lg border border-emerald-500/30">
+                <DollarSign className="w-4 h-4 text-emerald-400" />
+                <span className="font-mono text-lg text-emerald-400">
+                  ${balance.toFixed(2)}
+                </span>
+              </div>
             </div>
           </div>
-        </motion.div>
-      </motion.header>
-
-      {/* API Status */}
-      <ApiStatus />
-
-      {/* Navigation Tabs */}
-      <motion.div
-        className="flex justify-center mb-8"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.3 }}
-      >
-        <div className="flex gap-2 cyber-border p-2 rounded-xl bg-black/20">
-          {[
-            { id: 'neural-bets', label: 'Neural Bets', icon: Brain },
-            { id: 'live-feed', label: 'Live Feed', icon: Zap },
-            { id: 'analytics', label: 'Analytics', icon: TrendingUp },
-            { id: 'geo-props', label: 'Geo Props', icon: Globe }
-          ].map(tab => (
-            <motion.button
-              key={tab.id}
-              className={`px-6 py-3 rounded-lg flex items-center gap-2 transition-all duration-300 ${
-                activeTab === tab.id
-                  ? 'bg-iotex-primary text-black font-bold'
-                  : 'text-gray-400 hover:text-white hover:bg-white/10'
-              }`}
-              onClick={() => setActiveTab(tab.id)}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <tab.icon className="w-5 h-5" />
-              {tab.label}
-            </motion.button>
-          ))}
         </div>
-      </motion.div>
+      </header>
 
-      {/* Main Content */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.5 }}
-      >
-        {activeTab === 'neural-bets' && <BettingInterface />}
-
-        {activeTab === 'live-feed' && (
-          <div className="cyber-border p-8 text-center">
-            <Zap className="w-16 h-16 text-iotex-primary mx-auto mb-4 animate-pulse-cyber" />
-            <h3 className="text-2xl font-bold mb-2">Live Tournament Feed</h3>
-            <p className="text-gray-400">Real-time esports data streaming...</p>
+      <div className="max-w-7xl mx-auto p-4 grid grid-cols-1 lg:grid-cols-4 gap-6">
+        {/* Main Content */}
+        <div className="lg:col-span-3">
+          {/* Navigation */}
+          <div className="flex gap-1 mb-6 bg-gray-800/50 p-1 rounded-lg">
+            {[
+              { id: 'live-betting', label: 'Live Betting', icon: Clock },
+              { id: 'tournaments', label: 'Tournaments', icon: Trophy },
+              { id: 'players', label: 'Players', icon: Users },
+              { id: 'props', label: 'Props', icon: Gamepad2 }
+            ].map(tab => (
+              <button
+                key={tab.id}
+                className={`flex-1 px-4 py-2 rounded-md flex items-center justify-center gap-2 transition-all ${
+                  activeTab === tab.id
+                    ? 'bg-emerald-500 text-black font-semibold'
+                    : 'text-gray-400 hover:text-white hover:bg-gray-700/50'
+                }`}
+                onClick={() => setActiveTab(tab.id)}
+              >
+                <tab.icon className="w-4 h-4" />
+                {tab.label}
+              </button>
+            ))}
           </div>
-        )}
 
-        {activeTab === 'analytics' && (
-          <div className="cyber-border p-8 text-center">
-            <TrendingUp className="w-16 h-16 text-cyber-green mx-auto mb-4 animate-neural" />
-            <h3 className="text-2xl font-bold mb-2">AI Analytics Hub</h3>
-            <p className="text-gray-400">Performance metrics and predictions</p>
-          </div>
-        )}
+          {/* Tab Content */}
+          {activeTab === 'live-betting' && (
+            <div className="space-y-6">
+              <LiveMatches onAddToBettingSlip={addToBettingSlip} />
+              <BettingInterface onAddToBettingSlip={addToBettingSlip} />
+            </div>
+          )}
 
-        {activeTab === 'geo-props' && (
-          <div className="cyber-border p-8 text-center">
-            <Globe className="w-16 h-16 text-cyber-neon mx-auto mb-4 animate-pulse-cyber" />
-            <h3 className="text-2xl font-bold mb-2">Geo-Localized Props</h3>
-            <p className="text-gray-400">Location-based betting opportunities</p>
-          </div>
-        )}
-      </motion.div>
+          {activeTab === 'tournaments' && (
+            <div className="bg-gray-800/50 rounded-lg p-8 text-center border border-gray-700">
+              <Trophy className="w-16 h-16 text-yellow-500 mx-auto mb-4" />
+              <h3 className="text-2xl font-bold mb-2">Upcoming Tournaments</h3>
+              <p className="text-gray-400">Major esports events and championships</p>
+            </div>
+          )}
 
-      {/* Footer */}
-      <motion.footer
-        className="text-center mt-16 text-gray-500"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1 }}
-      >
-        <p>Powered by IoTeX Blockchain • DePIN Infrastructure • AI-Driven Predictions</p>
-      </motion.footer>
-    </main>
+          {activeTab === 'players' && (
+            <div className="bg-gray-800/50 rounded-lg p-8 text-center border border-gray-700">
+              <Users className="w-16 h-16 text-blue-500 mx-auto mb-4" />
+              <h3 className="text-2xl font-bold mb-2">Player Statistics</h3>
+              <p className="text-gray-400">Individual player performance data</p>
+            </div>
+          )}
+
+          {activeTab === 'props' && (
+            <div className="bg-gray-800/50 rounded-lg p-8 text-center border border-gray-700">
+              <Gamepad2 className="w-16 h-16 text-purple-500 mx-auto mb-4" />
+              <h3 className="text-2xl font-bold mb-2">Proposition Bets</h3>
+              <p className="text-gray-400">Specialized betting markets</p>
+            </div>
+          )}
+        </div>
+
+        {/* Betting Slip */}
+        <div className="lg:col-span-1">
+          <BettingSlip
+            bets={bettingSlip}
+            onRemoveBet={removeFromBettingSlip}
+            onUpdateStake={updateStake}
+            balance={balance}
+            onPlaceBets={(totalStake) => {
+              setBalance(prev => prev - totalStake)
+              setBettingSlip([])
+            }}
+          />
+        </div>
+      </div>
+    </div>
   )
 }
