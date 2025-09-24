@@ -26,6 +26,9 @@ RUN pip install --no-cache-dir --upgrade pip && \
 # Copy backend application code
 COPY backend/ ./
 
+# Make start script executable
+RUN chmod +x start.sh
+
 # Create non-root user
 RUN useradd --create-home --shell /bin/bash geoprop && \
     chown -R geoprop:geoprop /app
@@ -36,7 +39,7 @@ EXPOSE $PORT
 
 # Health check
 HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
-    CMD curl -f http://localhost:$PORT/health || exit 1
+    CMD curl -f http://localhost:8000/health || exit 1
 
-# Start command
-CMD uvicorn app.main:app --host 0.0.0.0 --port $PORT
+# Start command - Use startup script
+CMD ["./start.sh"]
