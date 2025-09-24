@@ -15,11 +15,20 @@ from backend.app.main import app
 if __name__ == "__main__":
     import uvicorn
 
-    # Get port from environment, Railway provides this automatically
-    port = int(os.getenv("PORT", 8000))
+    # Railway port detection - same logic as simple_server.py
+    port = None
+    for port_var in ["PORT", "RAILWAY_PORT"]:
+        if os.getenv(port_var):
+            port = int(os.getenv(port_var))
+            print(f"🔍 Using port from {port_var}: {port}")
+            break
+
+    if port is None:
+        port = 8080  # Railway default
+        print(f"🔍 No PORT env var found, using Railway default: {port}")
 
     print("="*50)
-    print("🚀 GEOPROP AI STARTING UP")
+    print("🚀 GEOPROP AI - FULL PLATFORM STARTING")
     print("="*50)
     print(f"Port: {port}")
     print(f"Environment: {os.getenv('RAILWAY_ENVIRONMENT', 'development')}")
