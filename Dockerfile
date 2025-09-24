@@ -24,5 +24,5 @@ RUN useradd --create-home --shell /bin/bash geoprop && \
     chown -R geoprop:geoprop /app
 USER geoprop
 
-# Start with the test script that can handle missing files
-CMD ["python", "test.py"]
+# Start the full GeoProp AI application
+CMD ["python", "main.py"]

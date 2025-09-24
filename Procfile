@@ -1,1 +1,1 @@
-web: python minimal_debug.py
+web: python main.py
