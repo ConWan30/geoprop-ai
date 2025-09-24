@@ -8,12 +8,22 @@ import BettingSlip from '@/components/BettingSlip'
 import LiveMatches from '@/components/LiveMatches'
 import ApiStatus from '@/components/ApiStatus'
 
+interface Bet {
+  id: string
+  game: string
+  player: string
+  prop: string
+  odds: string
+  decimalOdds: number
+  stake: number
+}
+
 export default function Home() {
   const [activeTab, setActiveTab] = useState('live-betting')
-  const [bettingSlip, setBettingSlip] = useState([])
+  const [bettingSlip, setBettingSlip] = useState<Bet[]>([])
   const [balance, setBalance] = useState(2847.50)
 
-  const addToBettingSlip = (bet) => {
+  const addToBettingSlip = (bet: Bet) => {
     setBettingSlip(prev => {
       const existing = prev.find(b => b.id === bet.id)
       if (existing) return prev
@@ -21,11 +31,11 @@ export default function Home() {
     })
   }
 
-  const removeFromBettingSlip = (betId) => {
+  const removeFromBettingSlip = (betId: string) => {
     setBettingSlip(prev => prev.filter(b => b.id !== betId))
   }
 
-  const updateStake = (betId, stake) => {
+  const updateStake = (betId: string, stake: string) => {
     setBettingSlip(prev => prev.map(b =>
       b.id === betId ? { ...b, stake: parseFloat(stake) || 0 } : b
     ))
